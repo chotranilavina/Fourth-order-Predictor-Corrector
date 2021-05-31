@@ -1,11 +1,4 @@
-fs=zeros(1,N);
-hs=zeros(1,N);
-thetas=zeros(1,N);
-phis=zeros(1,N);
-Fs=zeros(1,N);
-Hs=zeros(1,N);
-Thetas=zeros(1,N);
-Phis=zeros(1,N);
+
 for j=5:N+2
     %F(j)=(f(j+1)/4+(5*f(j))/6-(3*f(j-1))/2+f(j-2)/2-f(j-3)/12)/hstep;
     %H(j)=(h(j+1)/4+(5*h(j))/6-(3*h(j-1))/2+h(j-2)/2-h(j-3)/12)/hstep;
@@ -28,8 +21,9 @@ for j=5:N+2
     Theta(j+1)=((48*hstep-12*(hstep^2)*Pr*(f(j)-0.5*tau*hstep*(j+2))/(1+4*R/3))*Theta(j)-36*hstep*Theta(j-1)+16*hstep*Theta(j-2)-3*hstep*Theta(j-3)-12*Pr*Ec*(1+K)*((25*F(j+1)/12-4*F(j)+3*F(j-1)-4*F(j-2)/3+F(j-3)/4)^2)/(1+4*R/3)+12*(hstep^2)*(Pr*theta(j)*(F(j)+tau)-Pr*M*Ec*(F(j)^2)-A1*F(j)-B1*theta(j))/(1+4*R/3))/(25*hstep);
     Phi(j+1)=((48+12*hstep*tau*Sc*hstep*(j+2)-12*hstep*Sc*f(j))*Phi(j)-36*Phi(j-1)+16*Phi(j-2)-3*Phi(j-3)+12*hstep*phi(j)*Sc*(tau+F(j)))/25;
 end
+Fi=smooth(F);
 figure(1);
-plot(eps,F);
+plot(eps,Fi,'b');
 figure(2)
 plot(eps,h);
 figure(3)
